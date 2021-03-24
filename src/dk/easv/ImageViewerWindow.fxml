@@ -3,9 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1091.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.ImageViewerWindowController">
     <top>
@@ -26,6 +28,32 @@
                         <Button id="btnNext" fx:id="btnNext" mnemonicParsing="false" onAction="#handleBtnNextAction" text="Next" />
                     </buttons>
                 </ButtonBar>
+            <VBox prefHeight="57.0" prefWidth="312.0">
+               <children>
+                  <HBox prefHeight="43.0" prefWidth="241.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Start">
+                           <HBox.margin>
+                              <Insets left="16.0" top="16.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Stop">
+                           <HBox.margin>
+                              <Insets left="8.0" top="16.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Slider>
+                           <HBox.margin>
+                              <Insets left="16.0" top="22.0" />
+                           </HBox.margin>
+                        </Slider>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
             </children>
             <opaqueInsets>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -35,7 +63,10 @@
     <center>
         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <center>
-                <ImageView fx:id="imageView" fitHeight="647.0" fitWidth="1090.0" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="imageView" fitHeight="647.0" fitWidth="1090.0" pickOnBounds="true" preserveRatio="true">
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin></ImageView>
             </center>
         </BorderPane>
     </center>
