@@ -8,6 +8,7 @@ public class Slideshow extends Task<Image>{
     private int currentImageIndex = 0;
     private final List<Image> images;
     private int waitTime;
+    public static boolean stopShow;
 
     public Slideshow(int waitTime, List<Image> images) {
         this.waitTime = waitTime;
@@ -16,11 +17,12 @@ public class Slideshow extends Task<Image>{
 
     @Override
     protected Image call() throws Exception {
-        while(true){
+        while(!stopShow){
             moveNext();
             updateValue(images.get(currentImageIndex));
             Thread.sleep(waitTime);
         }
+        return images.get(currentImageIndex);
     }
 
     public void moveNext(){

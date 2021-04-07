@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -27,7 +25,12 @@ public class ImageViewerWindowController
     public Button btnStart;
     public Button btnStop;
     public Slider slider;
-    private boolean stopShow = false;
+
+
+    @FXML
+    public void initialize() {
+        Slideshow.stopShow = false;
+    }
 
     @FXML
     Parent root;
@@ -73,8 +76,8 @@ public class ImageViewerWindowController
 
     }
 
-
     public void Start(ActionEvent actionEvent) throws InterruptedException {
+        Slideshow.stopShow = false;
         int waitThis = (int) slider.getValue() * 1000;
         Slideshow thread = new Slideshow(waitThis, images);
         thread.valueProperty().addListener((obs, o, n) -> {
@@ -86,6 +89,6 @@ public class ImageViewerWindowController
     }
 
     public void Stop(ActionEvent actionEvent) {
-        stopShow = true;
+        Slideshow.stopShow = true;
     }
 }
