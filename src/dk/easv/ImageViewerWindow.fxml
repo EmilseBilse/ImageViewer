@@ -32,17 +32,17 @@
                <children>
                   <HBox prefHeight="43.0" prefWidth="241.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Start">
+                        <Button fx:id="btnStart" mnemonicParsing="false" onAction="#Start" prefHeight="25.0" prefWidth="55.0" text="Start">
                            <HBox.margin>
                               <Insets left="16.0" top="16.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Stop">
+                        <Button fx:id="btnStop" mnemonicParsing="false" onAction="#Stop" prefHeight="25.0" prefWidth="55.0" text="Stop">
                            <HBox.margin>
                               <Insets left="8.0" top="16.0" />
                            </HBox.margin>
                         </Button>
-                        <Slider>
+                        <Slider fx:id="slider" max="5.0" min="1.0">
                            <HBox.margin>
                               <Insets left="16.0" top="22.0" />
                            </HBox.margin>
