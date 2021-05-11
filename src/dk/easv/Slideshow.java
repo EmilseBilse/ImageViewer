@@ -61,4 +61,8 @@ public class Slideshow extends Task<Image>{
             Thread.sleep(waitTime);
         }
     }
+
+    public void setWaitTime(int waitTime) {
+        this.waitTime = waitTime;
+    }
 }
