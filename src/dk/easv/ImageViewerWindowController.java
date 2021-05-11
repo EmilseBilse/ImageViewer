@@ -27,6 +27,7 @@ public class ImageViewerWindowController
     public Button btnStop;
     public Slider slider;
     public Label lblFileName;
+    public Label lblColors;
 
     private int currentImageIndex;
 
@@ -62,7 +63,7 @@ public class ImageViewerWindowController
     }
 
     @FXML
-    private void handleBtnPreviousAction() throws Exception {
+    private void handleBtnPreviousAction() {
         if (!images.isEmpty()) {
             currentImageIndex = (currentImageIndex - 1 + images.size()) % images.size();
             displayImage();
@@ -70,18 +71,19 @@ public class ImageViewerWindowController
     }
 
     @FXML
-    private void handleBtnNextAction() throws Exception {
+    private void handleBtnNextAction() {
         if (!images.isEmpty()) {
             currentImageIndex = (currentImageIndex + 1 + images.size()) % images.size();
             displayImage();
         }
     }
 
-    public void Start(ActionEvent actionEvent) throws InterruptedException {
+    public void Start(ActionEvent actionEvent) {
         Slideshow.stopShow = false;
         int waitThis = (int) slider.getValue() * 1000;
         Slideshow thread = new Slideshow(waitThis,images,fileNames);
         thread.setFileName(lblFileName);
+        thread.setColors(lblColors);
         thread.valueProperty().addListener((obs, o, n) -> {
             imageView.setImage(n);
         });
