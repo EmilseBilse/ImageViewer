@@ -52,7 +52,7 @@ public class ImageViewerWindowController
                 "*.png", "*.jpg", "*.gif", "*.tif", "*.bmp"));
         List<File> files = fileChooser.showOpenMultipleDialog(new Stage());
 
-        if (!files.isEmpty()) {
+        if ( files != null && !files.isEmpty()) {
             files.forEach((File f) ->
             {
                 images.add(new Image(f.toURI().toString()));
