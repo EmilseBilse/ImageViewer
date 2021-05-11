@@ -19,6 +19,8 @@ public class Slideshow extends Task<Image>{
     private int green;
     private int blue;
     private Label fileName;
+    private Label colors;
+    public static boolean stopShow;
 
     public Label getColors() {
         return colors;
@@ -27,9 +29,6 @@ public class Slideshow extends Task<Image>{
     public void setColors(Label colors) {
         this.colors = colors;
     }
-
-    private Label colors;
-    public static boolean stopShow;
 
     public Label getFileName() {
         return fileName;
@@ -95,6 +94,10 @@ public class Slideshow extends Task<Image>{
         Platform.runLater(() ->{
             colors.setText("Red: " + red + " Green: " + green + " Blue: " + blue);
         });
+    }
+
+    public void setWaitTime(int waitTime) {
+        this.waitTime = waitTime;
     }
 
 }

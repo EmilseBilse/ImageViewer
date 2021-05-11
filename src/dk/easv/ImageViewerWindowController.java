@@ -28,6 +28,7 @@ public class ImageViewerWindowController
     public Slider slider;
     public Label lblFileName;
     public Label lblColors;
+    private Slideshow thread;
 
     private int currentImageIndex;
 
@@ -52,7 +53,7 @@ public class ImageViewerWindowController
                 "*.png", "*.jpg", "*.gif", "*.tif", "*.bmp"));
         List<File> files = fileChooser.showOpenMultipleDialog(new Stage());
 
-        if (!files.isEmpty()) {
+        if ( files != null && !files.isEmpty()) {
             files.forEach((File f) ->
             {
                 images.add(new Image(f.toURI().toString()));
@@ -80,8 +81,8 @@ public class ImageViewerWindowController
 
     public void Start(ActionEvent actionEvent) {
         Slideshow.stopShow = false;
-        int waitThis = (int) slider.getValue() * 1000;
-        Slideshow thread = new Slideshow(waitThis,images,fileNames);
+        int waitThis = (int) ((slider.getMax()-slider.getValue()) * 1000);
+        thread = new Slideshow(waitThis,images,fileNames);
         thread.setFileName(lblFileName);
         thread.setColors(lblColors);
         thread.valueProperty().addListener((obs, o, n) -> {
@@ -89,6 +90,7 @@ public class ImageViewerWindowController
         });
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.submit(thread);
+        waitSpeedListener();
     }
 
     public void Stop(ActionEvent actionEvent) {
@@ -98,5 +100,11 @@ public class ImageViewerWindowController
     private void displayImage(){
         lblFileName.setText("Picture: " + fileNames.get(currentImageIndex));
         imageView.setImage(images.get(currentImageIndex));
+    }
+
+    private void waitSpeedListener(){
+        this.slider.valueProperty().addListener((observable,oldValue,newValue) -> {
+            thread.setWaitTime((int) ((slider.getMax()-slider.getValue()) * 1000));
+        });
     }
 }
